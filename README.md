@@ -16,6 +16,7 @@ Para la realización de las prácticas se ha utilizado el siguiente stack tecnol
 * **IDE Gráfico:** MySQL Workbench
 * **Lenguajes:** SQL (DDL, DML, DCL) y extensiones procedurales.
 
+
 ## 🚀 Cómo Utilizar este Repositorio
 
 1.  **Clonar el repositorio:**
