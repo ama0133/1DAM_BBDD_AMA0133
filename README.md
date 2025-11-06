@@ -7,31 +7,6 @@ Repositorio académico de **Alejandro Molina** ([ama0133](https://github.com/ama
 
 Este repositorio sirve como archivo centralizado para todos los ejercicios, prácticas, scripts SQL y modelos de datos desarrollados durante el primer curso de DAM. El objetivo es aplicar los conocimientos teóricos sobre diseño, implementación y gestión de bases de datos relacionales utilizando MySQL.
 
-## 🗂️ Estructura del Repositorio
-
-El contenido está organizado en directorios que corresponden a las diferentes unidades temáticas o entregas del módulo:
-
-*(Esta sección está diseñada para que la actualices a medida que avanzas en el curso. Puedes cambiarla por los temas reales de tu módulo).*
-
-* **/TEMA_01_Introduccion_BBDD/**
-    * Diagramas Entidad-Relación (E-R).
-    * Conceptos teóricos y ejercicios iniciales.
-* **/TEMA_02_SQL_DDL/**
-    * Scripts para la creación de esquemas (`CREATE DATABASE`).
-    * Definición de tablas (`CREATE TABLE`), restricciones (`PRIMARY KEY`, `FOREIGN KEY`, `UNIQUE`, `CHECK`, `NOT NULL`).
-    * Modificación de estructuras (`ALTER TABLE`) y eliminación (`DROP TABLE`).
-* **/TEMA_03_SQL_DML/**
-    * Scripts de inserción de datos (`INSERT INTO`).
-    * Actualización (`UPDATE`) y borrado (`DELETE`) de registros.
-* **/TEMA_04_Consultas_SQL/**
-    * Ejercicios de consultas (`SELECT`) simples y multitabla (JOINs).
-    * Consultas con funciones de agregación, agrupamiento (`GROUP BY`) y subconsultas.
-* **/TEMA_05_Programacion_PLSQL/**
-    * Creación de Vistas (`CREATE VIEW`).
-    * Procedimientos almacenados y Funciones.
-    * Triggers (disparadores).
-* **/PROYECTO_FINAL/**
-    * Script SQL completo, modelo E-R y documentación del proyecto final de la asignatura.
 
 ## 🛠️ Tecnologías y Herramientas
 
