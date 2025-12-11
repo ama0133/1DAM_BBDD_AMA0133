@@ -18,7 +18,7 @@ from productos;
 -- 2. Listado de todos los pedidos realizados por el cliente 2, extrayendo toda la información.
 select *
 from pedidos
-where n_pedido = '2';
+where id_cliente = '2';
 
 -- ALEJANDRO MONTILLA AGUILAR
 -- 3. Consultar todos los datos de los productos de más de 100 €.
@@ -30,7 +30,7 @@ where precio >= '100';
 -- 4. Listado de clientes de Madrid o Barcelona.
 select *
 from clientes
-where ciudad in('madrid', 'barcelona');
+where ciudad in ('madrid', 'barcelona');
 
 -- ALEJANDRO MONTILLA AGUILAR
 -- 5. Obtener el precio medio de los productos del fabricante con id_fab = '1'.
@@ -40,7 +40,7 @@ where id_fab = '1';
 
 -- ALEJANDRO MONTILLA AGUILAR
 -- 6. Consultar la fecha del pedido más antiguo.
-select fecha_pedido
+select *
 from pedidos
 order by fecha_pedido asc limit 1;
 
