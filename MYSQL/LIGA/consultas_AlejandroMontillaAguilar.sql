@@ -25,7 +25,8 @@ where salario between 60000 and 100000;
 -- 4. Obtener los datos de los jugadores que sean pívot ordenados por su identificador.
 select id_jugador, posicion 
 from jugador 
-where posicion = 'pivot';
+where posicion = 'pivot'
+order by id_jugador;
 
 -- Alejandro Montilla
 -- 5. Seleccionar los datos de los jugadores que midan más de dos metros y ganen al menos 50.000 euros.
@@ -108,11 +109,10 @@ order by 'salario_medio';
 
 -- Alejandro Montilla
 -- 2. Mostrar el id del equipo y la suma de las alturas de sus jugadores cuando esta suma supere los 5 metros.
-select equipo, sum(altura) as "suma_alturas_jugadores" 
+select equipo, sum(altura) as 'suma_alturas_jugadores'
 from jugador 
 group by equipo 
-having sum(altura) > 5 
-order by equipo;
+having suma_alturas_jugadores > 5;
 
 -- Alejandro Montilla
 -- 3. Calcular cuántos jugadores miden más de dos metros.
@@ -125,19 +125,18 @@ where altura > 2;
 select equipo, posicion, count(*) as num_jugadores 
 from jugador 
 where posicion is not null
-group by equipo, posicion 
-order by equipo, posicion;
+group by equipo, posicion;
 
 -- Alejandro Montilla
 -- 5. Mostrar el id del equipo y el salario total de cada equipo, pero solo para los equipos que tengan más de 4 jugadores registrados.
-select equipo, sum(salario) as 'salario_total' 
+select equipo, sum(salario) as 'salario_total', count(*) as 'num_jugadores'
 from jugador 
 group by equipo
-having count(*)>4;
+having num_jugadores > 4;
 
 -- Alejandro Montilla
 -- 6. Calcular cuántas ciudades distintas tienen equipos registrados.
-select count(*) as 'total_ciudades' 
+select distinct count(*) as 'total_ciudades' 
 from equipo;
 
 -- Alejandro Montilla

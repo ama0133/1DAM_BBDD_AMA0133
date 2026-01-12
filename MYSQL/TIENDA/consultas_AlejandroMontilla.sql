@@ -50,6 +50,9 @@ select pais
 from fabricantes
 group by pais;
 
+select distinct pais
+from fabricantes;
+
 -- ALEJANDRO MONTILLA AGUILAR
 -- 8. Obtén los pedidos realizados entre el 1 de enero de 2024 y el 5 de febrero de 2024.
 select *
@@ -107,9 +110,9 @@ order by precio asc limit 5;
 
 -- ALEJANDRO MONTILLA AGUILAR
 -- 17. Mostrar cuántos productos hay por fabricante
-select id_fab, count(*) as 'num_productos' 
+select id_categoria, count(*) as 'num_productos' 
 from productos 
-group by id_fab;
+group by id_categoria;
 
 -- ALEJANDRO MONTILLA AGUILAR
 -- 18. Mostrar solo los fabricantes que tengan más de 1 producto
@@ -128,7 +131,7 @@ where nombre like 'A%';
 -- 20. Mostrar productos cuyo nombre contenga la palabra "Portátil"
 select descripcion 
 from productos
-where descripcion like 'Portátil%';
+where descripcion like '%Portátil%';
 
 -- ALEJANDRO MONTILLA AGUILAR
 -- 21. Convertir nombres de clientes a mayúsculas
@@ -162,17 +165,25 @@ from clientes;
 
 -- ALEJANDRO MONTILLA AGUILAR
 -- 27. Calcular cuántos días han pasado desde cada pedido hasta hoy (función SYSDATE):
-select n_pedido as n_pedido,fecha_pedido, sysdate() as Fecha_Actual, datediff(sysdate(), fecha_pedido) AS 'Dias_Transcurridos'
+select n_pedido,fecha_pedido, sysdate() as Fecha_Actual, datediff(sysdate(), fecha_pedido) AS 'Dias_Transcurridos'
 from pedidos;
 
 -- ALEJANDRO MONTILLA AGUILAR
 -- 28. Obtener la última fecha del mes en que se realizó cada pedido (función LAST_DAY):
-select fecha_pedido, last_day(fecha_pedido) as 'ultima_fecha'
+select fecha_pedido, firts_day(fecha_pedido) as 'ultima_fecha'
 from pedidos;
 
 -- ALEJANDRO MONTILLA AGUILAR
 -- 29. Asignar un estado personalizado a los pedidos dependiendo de su estado actual, 'Finalizado', 'Anulado' o 'En Gestión' (expresión CASE):
-select  ;
+select * from pedidos;
+
+select n_pedido, estado,
+	case 
+		when estado = 'Completado' then 'Finalizado' 
+		when estado = 'Cancelado' then 'Anulado' 
+		else 'En Gestión'
+	end as 'Estado_personalizado'
+from pedidos;
 
 -- ALEJANDRO MONTILLA AGUILAR
 -- 30. Obtener los pedidos realizados en 2023.
@@ -220,7 +231,10 @@ from clientes;
 -- ALEJANDRO MONTILLA AGUILAR
 -- 38. Mostrar "CARO" para productos => 500 o "BARATO" según el precio
 select descripcion, precio,
-case when precio >= 500 then 'CARO' else 'BARATO' end as 'clasificacion'
+	case 
+		when precio >= 500 then 'CARO' 
+		else 'BARATO' 
+	end as 'clasificacion'
 from productos;
 
 -- ALEJANDRO MONTILLA AGUILAR
@@ -235,3 +249,7 @@ select Ciudad, count(*) as 'num_clientes'
 from Clientes
 group by Ciudad
 having count(*) > 1;
+
+
+INSERT INTO clientes (Nombre, Direccion, Ciudad, Telefono, Email)
+VALUES ('Alejandro Montilla', 'Avda. Marina', 'Madrid', '685699553', 'alex@gmail.com');

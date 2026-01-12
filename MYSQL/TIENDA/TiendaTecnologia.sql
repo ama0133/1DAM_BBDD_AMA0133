@@ -88,7 +88,7 @@ CREATE TABLE Detalles_Pedido (
 
 -- CLIENTES
 INSERT INTO Clientes (Nombre, Direccion, Ciudad, Telefono, Email)
-VALUES
+VALUESw
 ('Juan Pérez', 'Calle Falsa 123', 'Madrid', '600123456', 'juan.perez@example.com'),
 ('Ana López', 'Avenida Real 45', 'Barcelona', '650987654', 'ana.lopez@example.com'),
 ('Carlos García', 'Plaza Mayor 2', 'Valencia', '610555444', 'carlos.garcia@example.com'),
