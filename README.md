@@ -1,5 +1,5 @@
 # 📚 1º DAM: Bases de Datos (BBDD)
-Repositorio académico de **Alejandro Molina** ([ama0133](https://github.com/ama0133)) para la asignatura de Bases de Datos del Grado Superior en Desarrollo de Aplicaciones Multiplataforma.
+Repositorio académico de **Alejandro Montilla** ([ama0133](https://github.com/ama0133)) para la asignatura de Bases de Datos del Grado Superior en Desarrollo de Aplicaciones Multiplataforma.
 
 ---
 
