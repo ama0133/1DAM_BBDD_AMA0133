@@ -65,9 +65,11 @@ SELECT
 FROM
     jugador
 WHERE
-    fecha_alta IS NOT NULL
-ORDER BY fecha_alta
-LIMIT 1;
+    fecha_alta = (SELECT 
+            MIN(fecha_alta)
+        FROM
+            jugador);
+    
 -- 7.Datos de los equipos que tienen más de tres jugadores registrados.
 SELECT 
     *
@@ -80,6 +82,16 @@ WHERE
             jugador
         GROUP BY equipo
         HAVING COUNT(*) > 3);
+-- ------------------------------------------------------------------------ --         
+SELECT 
+    e.*
+FROM
+    equipo e
+        JOIN
+    jugador j ON e.id_equipo = j.equipo
+GROUP BY id_equipo
+HAVING COUNT(*) > 3;
+
 -- 8.Mostrar el nombre del jugador, el nombre del equipo al que pertenece y su posición.
 SELECT 
     j.nombre, e.nombre, j.posicion
@@ -106,25 +118,38 @@ FROM
 GROUP BY e.id_equipo;
 -- 11.Datos de los jugadores cuyos equipos hayan jugado al menos tres partidos como visitantes.
 SELECT 
-    j.nombre, COUNT(p.visitante) AS num_veces_visitante
+    j.*
 FROM
     jugador j
         JOIN
-    equipo e ON e.id_equipo = j.equipo
-        JOIN
-    partido p ON e.id_equipo = p.visitante
+    partido p ON j.equipo = p.visitante
 GROUP BY j.id_jugador
-HAVING num_veces_visitante >= 3;
+HAVING count(visitante) >= 3;
+
+-- ------------------------------------------------------------------------ -- 
+
+SELECT 
+    *
+FROM
+    jugador
+WHERE
+    equipo IN (SELECT 
+            visitante
+        FROM
+            partido
+        GROUP BY visitante
+        HAVING COUNT(*) >= 3);
+
 
 -- 12.Datos de los equipos y el salario máximo de sus jugadores.
 
 SELECT 
-    e.nombre AS 'Equipo', MAX(j.salario) AS Salario_Maximo
+    e.*, MAX(j.salario) AS Salario_Maximo
 FROM
     equipo e
         JOIN
     jugador j ON e.id_equipo = j.equipo
-GROUP BY e.id_equipo , e.nombre;
+GROUP BY e.id_equipo;
 
 -- 13.Datos de los equipos que hayan jugado algún partido contra el Valencia en casa.
 SELECT 
@@ -192,5 +217,6 @@ WHERE
                 JOIN
             jugador j ON e.id_equipo = j.equipo
         GROUP BY e.id_equipo;
+
 
         

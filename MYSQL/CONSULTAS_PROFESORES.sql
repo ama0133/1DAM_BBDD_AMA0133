@@ -170,4 +170,96 @@ WHERE
         FROM
             asignaturas);
             
--- 4. 
+-- 4. Datos de las asignaturas que se imparten.
+SELECT 
+    *
+FROM
+    asignaturas
+WHERE
+    codigo IN (SELECT 
+            asignatura
+        FROM
+            imparte);
+            
+-- 5. Datos de las asigntaturas que no se imparten
+SELECT 
+    *
+FROM
+    asignaturas
+WHERE
+    codigo NOT IN (SELECT 
+            asignatura
+        FROM
+            imparte);
+            
+-- 6. Datos de los profesores que imparten alguna asignatura.
+SELECT 
+    *
+FROM
+    profesores
+WHERE
+    dni IN (SELECT 
+            dni
+        FROM
+            imparte);
+-- --------------------------------------------------------------
+SELECT 
+    p.*
+FROM
+    profesores p
+        JOIN
+    imparte i ON (p.dni = i.dni)
+GROUP BY dni;
+-- --------------------------------------------------------------
+SELECT 
+    p.*
+FROM
+    profesores p
+        NATURAL JOIN
+    imparte i
+GROUP BY dni;
+
+-- 6. Datos de los profeosres que no imparten ninguna asignatura
+SELECT 
+    *
+FROM
+    profesores
+WHERE
+    dni NOT IN (SELECT 
+            dni
+        FROM
+            imparte);
+            
+-- 7. Datos de los profesores que no preparan ninguna asignatura
+SELECT 
+    *
+FROM
+    profesores
+WHERE
+    dni NOT IN (SELECT 
+            dni
+        FROM
+            prepara);
+
+-- 8. Datos de los profesores que no preparan ni imparen ninguna
+
+SELECT 
+    *
+FROM
+    profesores
+WHERE
+    dni NOT IN (SELECT 
+            dni
+        FROM
+            prepara)
+        AND dni NOT IN (SELECT 
+            dni
+        FROM
+            imparte);
+            
+-- 9. ¿Tenemos profesores?
+SELECT 
+    EXISTS( SELECT 
+            *
+        FROM
+            profesores) AS respuesta;
