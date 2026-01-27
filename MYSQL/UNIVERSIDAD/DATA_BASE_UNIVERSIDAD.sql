@@ -122,15 +122,66 @@ FROM
     profesor pro ON (pro.id_profesor = a.id_profesor);
 
 -- 9. Datos de los profesores que imparten alguna asignatura
-select * from persona per join profersor pro on (per.id =)
+SELECT 
+    *
+FROM
+    persona per
+        JOIN
+    profesor pro ON (per.id = pro.id_profesor)
+        JOIN
+    asignatura a ON (pro.id_profesor = a.id_profesor)
+GROUP BY pro.id_profesor;
 
 -- 10. Cantidad de créditos que imparte cada profesor según su nif.
-
+SELECT 
+    per.nif, SUM(a.creditos) AS 'Total de creditos'
+FROM
+    persona per
+        JOIN
+    profesor pro ON (per.id = pro.id_profesor)
+        JOIN
+    asignatura a ON (pro.id_profesor = a.id_profesor)
+GROUP BY per.nif;
+    
 -- 11. Mostrar datos de las asignaturas que tienen más créditos que todas las demás.
+SELECT 
+    *
+FROM
+    asignatura
+WHERE
+    creditos >= (SELECT 
+            creditos
+        FROM
+            asignatura);
 
 -- 12. Mostrar datos de las asignaturas con menos créditos
+SELECT 
+    *
+FROM
+    asignatura
+WHERE
+    creditos < (SELECT 
+            creditos
+        FROM
+            asignatura);
 
 -- 13. Muestra por cada grado la suma de sus créditos.
+SELECT 
+    g.nombre, SUM(a.creditos) as 'Total creditos'
+FROM
+    asignatura a
+        JOIN
+    grado g ON (a.id_grado = g.id)
+GROUP BY g.id;
 
 -- 14. Asignaturas que pertenecen al mismo grado que “Bases de Datos”
-    
+SELECT 
+    *
+FROM
+    asignatura
+WHERE
+    nombre = (SELECT 
+            id_grado
+        FROM
+            asignatura)
+GROUP BY id_grado;
