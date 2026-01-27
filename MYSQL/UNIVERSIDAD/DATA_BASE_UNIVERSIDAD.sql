@@ -123,14 +123,14 @@ FROM
 
 -- 9. Datos de los profesores que imparten alguna asignatura
 SELECT 
-    *
+    per.*
 FROM
     persona per
         JOIN
     profesor pro ON (per.id = pro.id_profesor)
         JOIN
     asignatura a ON (pro.id_profesor = a.id_profesor)
-GROUP BY pro.id_profesor;
+    group by pro.id_profesor;
 
 -- 10. Cantidad de créditos que imparte cada profesor según su nif.
 SELECT 
@@ -149,8 +149,8 @@ SELECT
 FROM
     asignatura
 WHERE
-    creditos >= (SELECT 
-            creditos
+    creditos = (SELECT 
+            MAX(creditos)
         FROM
             asignatura);
 
@@ -160,8 +160,8 @@ SELECT
 FROM
     asignatura
 WHERE
-    creditos < (SELECT 
-            creditos
+    creditos = (SELECT 
+            MIN(creditos)
         FROM
             asignatura);
 
@@ -180,8 +180,9 @@ SELECT
 FROM
     asignatura
 WHERE
-    nombre = (SELECT 
+    id_grado IN (SELECT 
             id_grado
         FROM
-            asignatura)
-GROUP BY id_grado;
+            asignatura
+        WHERE
+            id_grado = 4);
